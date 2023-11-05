@@ -13,8 +13,6 @@ namespace LZW
         private BitWriter bitWriter;
         private long fileLength;
         private long fileLengthInBits;
-        private string encoderInputFilePath;
-        private string encoderOutputFilePath;
         private List<string> defaultSymbolsDictionary;
         private List<string> symbolsDictionary;
         private int indicesSizeInBits;
@@ -38,9 +36,6 @@ namespace LZW
                 char symbol = Convert.ToChar(i);
                 defaultSymbolsDictionary.Add(symbol.ToString());
             }
-
-            encoderInputFilePath = inputFilePath;
-            encoderOutputFilePath = outputFilePath;
 
             uint value = bitReader.ReadNBits(4);
             indicesSizeInBits = (int)value;

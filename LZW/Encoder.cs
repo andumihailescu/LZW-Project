@@ -15,8 +15,6 @@ namespace LZW
         private BitWriter bitWriter;
         private long fileLength;
         private long fileLengthInBits;
-        private string encoderInputFilePath;
-        private string encoderOutputFilePath;
         private List<string> defaultSymbolsDictionary;
         private List<string> symbolsDictionary;
         private int indicesSizeInBits;
@@ -42,9 +40,6 @@ namespace LZW
                 char symbol = Convert.ToChar(i);
                 defaultSymbolsDictionary.Add(symbol.ToString());
             }
-
-            encoderInputFilePath = inputFilePath;
-            encoderOutputFilePath = outputFilePath;
         }
 
         public void SetIndicesSize(int size)
@@ -140,7 +135,7 @@ namespace LZW
                     listBox.Items.Add(i + ": " + Convert.ToChar(i));
                 }
             }
-            for (int i = 256; i < symbolsDictionary.Count; i++)
+            for (int i = 256; i < symbolsDictionary.Count - 1; i++)
             {
                 listBox.Items.Add(i + ": " + symbolsDictionary[i]);
             }
