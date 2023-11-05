@@ -48,6 +48,7 @@ namespace LZW
             int symbolSize = indicesSizeInBits;
             long numberOfRemainingBits = fileLengthInBits - 5;
 
+            int maxIndexValue = (int)Math.Pow(2, indicesSizeInBits) - 1;
             symbolsDictionary = defaultSymbolsDictionary.ToList();
 
             string endOfFile = Convert.ToChar(26).ToString();
@@ -60,8 +61,24 @@ namespace LZW
                 value = bitReader.ReadNBits(symbolSize);
 
                 var currentSymbol = symbolsDictionary[(int)value];
-                symbolsDictionary.Add(lastSymbol + currentSymbol[0]);
                 
+
+                if (dictionaryType == false)
+                {
+                    if (symbolsDictionary.Count <= maxIndexValue)
+                    {
+                        symbolsDictionary.Add(lastSymbol + currentSymbol[0]);
+                    }
+                }
+                else
+                {
+                    if (symbolsDictionary.Count > maxIndexValue)
+                    {
+                        symbolsDictionary = defaultSymbolsDictionary.ToList();
+                    }
+                    symbolsDictionary.Add(lastSymbol + currentSymbol[0]);
+                }
+
                 foreach (char character in lastSymbol)
                 {
                     bitWriter.WriteNBits(8, Convert.ToUInt32(character));

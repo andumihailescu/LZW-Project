@@ -128,6 +128,8 @@ namespace LZW
 
         public void DisplaySymbolCodes(ListBox listBox)
         {
+            listBox.Items.Clear();
+            
             for (int i = 0; i < 256; i++)
             {
                 if (symbolExists[i])
@@ -135,7 +137,7 @@ namespace LZW
                     listBox.Items.Add(i + ": " + Convert.ToChar(i));
                 }
             }
-            for (int i = 256; i < symbolsDictionary.Count - 1; i++)
+            for (int i = 256; i < symbolsDictionary.Count; i++)
             {
                 listBox.Items.Add(i + ": " + symbolsDictionary[i]);
             }
