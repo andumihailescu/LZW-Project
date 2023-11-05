@@ -48,7 +48,19 @@ namespace LZW
 
             encoder.InitialiseEncoder(encoderInputFilePath, encoderOutputFilePath);
             encoder.SetIndicesSize(Convert.ToInt32(chooseNumberOfBitsCb.Text));
+            if (chooseDictionaryTypeCb.Text == "Freeze")
+            {
+                encoder.SetDictionaryType(false);
+            }
+            else
+            {
+                encoder.SetDictionaryType(true);
+            }
             encoder.EncodeFile();
+            if(displayIndicesCkb.Checked)
+            {
+                encoder.DisplaySymbolCodes(indicesList);
+            }
 
         }
 
@@ -61,7 +73,7 @@ namespace LZW
             decoderInputFilePath = openFileDialog.FileName;
 
             string[] parts = decoderInputFilePath.Split('.');
-            string extension = parts[parts.Length - 2];
+            string extension = parts[parts.Length - 3];
 
             decoderOutputFilePath = decoderInputFilePath + "." + extension;
 
@@ -70,7 +82,8 @@ namespace LZW
 
         private void decodeFileBtn_Click(object sender, EventArgs e)
         {
-
+            decoder.InitialiseDecoder(decoderInputFilePath, decoderOutputFilePath);
+            decoder.DecodeFile();
 
         }
     }
