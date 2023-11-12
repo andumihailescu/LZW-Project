@@ -25,8 +25,6 @@ namespace LZW
             encoderInputFilePath = openFileDialog.FileName;
             encoderOutputFilePath = encoderInputFilePath;
 
-            //display the file path
-
             encoder = new Encoder();
         }
 

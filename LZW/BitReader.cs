@@ -55,7 +55,7 @@ namespace Bit_Reader_Writer
             NumberOfBitsToRead--;
             return result;
         }
-        public uint ReadNBits(int nr) //nr will be a value [1..32]
+        public uint ReadNBits(int nr)
         {
             uint result = 0;
             for (int i = 0; i < nr; i++)

@@ -49,7 +49,7 @@ namespace Bit_Reader_Writer
                 BufferWriter = 0;
             }
         }
-        public void WriteNBits(int nr, uint value) //nr will be a value [1..32]. Value must be an unsigned number which can be store at least on 32 bits.E.g. in C# UINT32
+        public void WriteNBits(int nr, uint value)
         {
             for(int i = 0; i < nr; i++)
             {
